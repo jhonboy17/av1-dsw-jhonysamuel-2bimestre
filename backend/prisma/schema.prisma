@@ -5,28 +5,31 @@
 
 datasource db {
   provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
   provider = "prisma-client-js"
 }
 
-// Modelo de Tarefa
-model Task {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?
-  completed   Boolean  @default(false)
-  createdAt   DateTime @default(now())
- 
-  // Relacionamento com Categoria
-  categoryId  Int?
-  category    Category? @relation(fields: [categoryId], references: [id])
+// ==============================
+// TEMA: HOSPITAL
+// Entidade principal: Patient
+// ==============================
+
+enum PatientSeverity {
+  GRAVE
+  LEVE
 }
 
-// Modelo de Categoria (Flexibilidade de temas)
-model Category {
-  id    Int    @id @default(autoincrement())
-  name  String @unique
-  tasks Task[]
+model Patient {
+  id          Int             @id @default(autoincrement())
+  nome        String
+  idade       Int
+  doenca      String
+  severidade  PatientSeverity
+  observacoes String?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

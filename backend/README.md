@@ -1,8 +1,8 @@
-# API de Tarefas - Arquitetura MVC
+# API Hospital - Arquitetura MVC
 
 ## 📚 Sobre o Projeto
 
-API REST para gerenciamento de tarefas, desenvolvida com **Node.js** e **Express**, seguindo o padrão de arquitetura **MVC (Model-View-Controller)**.
+API REST para gerenciamento de pacientes (tema hospital), desenvolvida com **Node.js**, **Express** e **Prisma**, seguindo o padrão de arquitetura **MVC (Model-View-Controller)**.
 
 ## 🏗️ Arquitetura MVC
 
@@ -71,6 +71,42 @@ Cliente → Rota → Controller → Model → Controller → Resposta JSON (View
 
 ```bash
 npm install
+
+### Banco de Dados (MySQL/MariaDB)
+
+#### Opção 1: XAMPP (recomendado para você)
+
+1) No XAMPP, inicie o **MySQL**.
+
+2) Abra o phpMyAdmin e crie o banco:
+
+```sql
+CREATE DATABASE hospital_db;
+```
+
+3) Crie um arquivo `.env` baseado no `.env.example` e mantenha `DATABASE_URL` (no XAMPP o padrão é `root` sem senha).
+
+4) Rode as migrations:
+
+```bash
+npx prisma migrate dev
+```
+
+#### Opção 2: MySQL com Docker
+
+1) Suba o MySQL:
+
+```bash
+docker compose up -d
+```
+
+2) Crie um arquivo `.env` baseado no `.env.example` e ajuste `DATABASE_URL`.
+
+3) Rode as migrations e gere o client:
+
+```bash
+npx prisma migrate dev
+```
 ```
 
 ### Iniciar o Servidor
@@ -83,45 +119,48 @@ O servidor estará rodando em: `http://localhost:3000`
 
 ## 📡 Endpoints da API
 
-### Listar todas as tarefas
+### Listar todos os pacientes
 
 ```http
-GET /tarefas
+GET /patients
 ```
 
-### Obter uma tarefa específica
+### Obter um paciente específico
 
 ```http
-GET /tarefas/:id
+GET /patients/:id
 ```
 
-### Criar uma nova tarefa
+### Criar um novo paciente
 
 ```http
-POST /tarefas
+POST /patients
 Content-Type: application/json
 
 {
-  "descricao": "Minha nova tarefa"
+  "nome": "Maria Silva",
+  "idade": 42,
+  "doenca": "Pneumonia",
+  "severidade": "GRAVE",
+  "observacoes": "Saturação baixa"
 }
 ```
 
-### Atualizar uma tarefa
+### Atualizar um paciente
 
 ```http
-PATCH /tarefas/:id
+PUT /patients/:id
 Content-Type: application/json
 
 {
-  "descricao": "Tarefa atualizada",
-  "concluida": true
+  "severidade": "LEVE"
 }
 ```
 
-### Excluir uma tarefa
+### Excluir um paciente
 
 ```http
-DELETE /tarefas/:id
+DELETE /patients/:id
 ```
 
 ## 🎯 Detalhes das Camadas

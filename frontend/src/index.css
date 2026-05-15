@@ -11,6 +11,15 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
+  /* Hospital landing tokens */
+  --hp-page: #0b70b6;
+  --hp-white: #ffffff;
+  --hp-ink: #0c1620;
+  --hp-muted: rgba(12, 22, 32, 0.65);
+  --hp-soft: rgba(12, 22, 32, 0.06);
+  --hp-teal: #12c8bb;
+  --hp-teal-2: #09c0d8;
+
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
@@ -52,18 +61,22 @@
 
 body {
   margin: 0;
+  background: var(--hp-white);
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+  border-radius: 0;
+  background: var(--hp-white);
+  border-inline: none;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  margin-block: 0;
 }
 
 h1,

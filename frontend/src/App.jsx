@@ -1,121 +1,121 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 
+const navLinks = [
+  { href: '#home', label: 'Início' },
+  { href: '#appointment', label: 'Agendamento' },
+  { href: '#contact', label: 'Contato' },
+]
+
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="hp" id="home">
+      <header className="hpHeader">
+        <nav className="hpNav" aria-label="Navegação principal">
+          <a className="hpBrand" href="#home" aria-label="Início">
+            <span className="hpBrandIcon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18">
+                <path
+                  fill="currentColor"
+                  d="M12 3a1 1 0 0 1 1 1v2.1a7 7 0 1 1-2 0V4a1 1 0 0 1 1-1Zm-1 7a1 1 0 0 0-1 1v1H9a1 1 0 0 0 0 2h1v1a1 1 0 0 0 2 0v-1h1a1 1 0 0 0 0-2h-1v-1a1 1 0 0 0-1-1Z"
+                />
+              </svg>
+            </span>
+          </a>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
+          <ul className="hpNavLinks">
+            {navLinks.map((l) => (
+              <li key={l.href}>
+                <a className="hpNavLink" href={l.href}>
+                  {l.label}
+                </a>
+              </li>
+            ))}
           </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+          <div className="hpAuth">
+            <a className="hpAuthLink" href="#signup">
+              Cadastrar
+            </a>
+            <a className="hpAuthButton" href="#login">
+              Entrar
+            </a>
+          </div>
+        </nav>
+      </header>
+
+      <main className="hpMain">
+        <section className="hpHero" aria-label="Apresentação">
+          <div className="hpHeroText">
+            <p className="hpKicker">BEM-VINDO</p>
+            <h1 className="hpTitle">
+              Clínica Médica em que <span className="hpAccent">você pode confiar.</span>
+            </h1>
+            <p className="hpLead">
+              Atendimento humanizado com agendamento simples.
+            </p>
+
+            <div className="hpCtas">
+              <a className="hpPrimary" href="#appointment">
+                Agendar
+              </a>
+              <a className="hpSecondary" href="#about">
+                Saiba mais
+              </a>
+            </div>
+          </div>
+
+          <div className="hpHeroMedia" aria-hidden="true">
+            <div className="hpImageCard">
+              <img
+                src={heroImg}
+                className="hpHeroImg"
+                alt=""
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="hpBand" aria-label="Agendamento">
+          <form className="hpForm" id="appointment">
+            <div className="hpField">
+              <label className="hpLabel" htmlFor="firstName">
+                Nome
+              </label>
+              <input className="hpInput" id="firstName" name="firstName" placeholder="Seu nome" />
+            </div>
+
+            <div className="hpField">
+              <label className="hpLabel" htmlFor="lastName">
+                Sobrenome
+              </label>
+              <input className="hpInput" id="lastName" name="lastName" placeholder="Seu sobrenome" />
+            </div>
+
+            <div className="hpField">
+              <label className="hpLabel" htmlFor="email">
+                E-mail
+              </label>
+              <input className="hpInput" id="email" name="email" type="email" placeholder="Seu e-mail" />
+            </div>
+
+            <div className="hpField">
+              <label className="hpLabel" htmlFor="contact">
+                Telefone
+              </label>
+              <input className="hpInput" id="contact" name="contact" placeholder="Seu telefone" />
+            </div>
+
+            <button className="hpSubmit" type="button">
+              Agendar
+            </button>
+          </form>
+        </section>
+
+        <section className="hpSpacer" id="about" aria-label="Spacer" />
+      </main>
+    </div>
   )
 }
 
