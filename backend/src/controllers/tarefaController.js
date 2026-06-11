@@ -56,34 +56,25 @@ export async function buscarPorId(req, res) {
  * @route POST /tasks
  */
 export async function criar(req, res) {
-  const { title, description, completed, categoryId } = req.body;
+  const { titulo, descricao, concluida } = req.body;
 
-  if (typeof title !== "string" || title.trim() === "") {
-    return res.status(400).json({ erro: "title é obrigatório" });
+  if (typeof titulo !== "string" || titulo.trim() === "") {
+    return res.status(400).json({ erro: "titulo é obrigatório" });
   }
 
-  if (description !== undefined && description !== null && typeof description !== "string") {
-    return res.status(400).json({ erro: "description deve ser string ou null" });
+  if (descricao !== undefined && descricao !== null && typeof descricao !== "string") {
+    return res.status(400).json({ erro: "descricao deve ser string ou null" });
   }
 
-  if (completed !== undefined && typeof completed !== "boolean") {
-    return res.status(400).json({ erro: "completed deve ser boolean" });
-  }
-
-  if (
-    categoryId !== undefined &&
-    categoryId !== null &&
-    (!Number.isInteger(categoryId) || categoryId <= 0)
-  ) {
-    return res.status(400).json({ erro: "categoryId deve ser inteiro positivo ou null" });
+  if (concluida !== undefined && typeof concluida !== "boolean") {
+    return res.status(400).json({ erro: "concluida deve ser boolean" });
   }
 
   try {
     const taskCriada = await TaskModel.criar({
-      title: title.trim(),
-      description: description === undefined ? undefined : description,
-      completed: completed === undefined ? undefined : completed,
-      categoryId: categoryId === undefined ? undefined : categoryId
+      titulo: titulo.trim(),
+      descricao: descricao === undefined ? undefined : descricao,
+      concluida: concluida === undefined ? undefined : concluida
     });
 
     return res.status(201).json(taskCriada);
@@ -103,33 +94,24 @@ export async function atualizar(req, res) {
     return res.status(400).json({ erro: "ID inválido" });
   }
 
-  const { title, description, completed, categoryId } = req.body;
+  const { titulo, descricao, concluida } = req.body;
 
-  if (title !== undefined && (typeof title !== "string" || title.trim() === "")) {
-    return res.status(400).json({ erro: "title inválido" });
+  if (titulo !== undefined && (typeof titulo !== "string" || titulo.trim() === "")) {
+    return res.status(400).json({ erro: "titulo inválido" });
   }
 
-  if (description !== undefined && description !== null && typeof description !== "string") {
-    return res.status(400).json({ erro: "description deve ser string ou null" });
+  if (descricao !== undefined && descricao !== null && typeof descricao !== "string") {
+    return res.status(400).json({ erro: "descricao deve ser string ou null" });
   }
 
-  if (completed !== undefined && typeof completed !== "boolean") {
-    return res.status(400).json({ erro: "completed deve ser boolean" });
-  }
-
-  if (
-    categoryId !== undefined &&
-    categoryId !== null &&
-    (!Number.isInteger(categoryId) || categoryId <= 0)
-  ) {
-    return res.status(400).json({ erro: "categoryId deve ser inteiro positivo ou null" });
+  if (concluida !== undefined && typeof concluida !== "boolean") {
+    return res.status(400).json({ erro: "concluida deve ser boolean" });
   }
 
   const dadosParaAtualizar = {
-    ...(title !== undefined ? { title: title.trim() } : {}),
-    ...(description !== undefined ? { description } : {}),
-    ...(completed !== undefined ? { completed } : {}),
-    ...(categoryId !== undefined ? { categoryId } : {})
+    ...(titulo !== undefined ? { titulo: titulo.trim() } : {}),
+    ...(descricao !== undefined ? { descricao } : {}),
+    ...(concluida !== undefined ? { concluida } : {})
   };
 
   if (Object.keys(dadosParaAtualizar).length === 0) {

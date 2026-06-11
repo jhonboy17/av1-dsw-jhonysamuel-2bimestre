@@ -49,7 +49,7 @@ export async function buscarPorId(id) {
 
 /**
  * cria um novo registro
- * @param {{title: string, description?: (string|null), completed?: boolean, categoryId?: (number|null)}} dados
+ * @param {{titulo: string, descricao?: (string|null), concluida?: boolean}} dados
  * @returns {Promise<Object|null>}
  */
 export async function criar(dados) {
@@ -64,7 +64,7 @@ export async function criar(dados) {
 /**
  * atualiza parcialmente um registro
  * @param {number} id
- * @param {{title?: string, description?: (string|null), completed?: boolean, categoryId?: (number|null)}} dados
+ * @param {{titulo?: string, descricao?: (string|null), concluida?: boolean}} dados
  * @returns {Promise<Object|null>}
  */
 export async function atualizar(id, dados) {

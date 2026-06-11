@@ -10,6 +10,7 @@
 import express from "express";
 import cors from "cors";
 import pacienteRoutes from "./routes/pacienteRoutes.js";
+import tarefaRoutes from "./routes/tarefaRoutes.js";
 
 // Cria a aplicação Express
 const app = express();
@@ -43,6 +44,8 @@ app.get("/", (req, res) => {
 // Registra as rotas de pacientes
 app.use(pacienteRoutes);
 
+// Registra as rotas de tarefas
+app.use(tarefaRoutes); 
 // ========================================
 // TRATAMENTO DE ROTAS NÃO ENCONTRADAS
 // ========================================
