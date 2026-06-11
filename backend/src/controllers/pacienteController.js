@@ -9,7 +9,7 @@ function parseIdParam(req) {
 function normalizeSeveridade(value) {
   if (typeof value !== "string") return null;
   const upper = value.trim().toUpperCase();
-  if (upper === "GRAVE" || upper === "LEVE") return upper;
+  if (upper === "GRAVE" || upper === "MEDIANO" || upper === "LEVE") return upper;
   return null;
 }
 
@@ -58,7 +58,7 @@ export async function criar(req, res) {
 
   const severidadeNormalizada = normalizeSeveridade(severidade);
   if (!severidadeNormalizada) {
-    return res.status(400).json({ erro: "severidade deve ser GRAVE ou LEVE" });
+    return res.status(400).json({ erro: "severidade deve ser GRAVE, MEDIANO ou LEVE" });
   }
 
   if (
@@ -111,7 +111,7 @@ export async function atualizar(req, res) {
   const severidadeNormalizada =
     severidade === undefined ? undefined : normalizeSeveridade(severidade);
   if (severidade !== undefined && !severidadeNormalizada) {
-    return res.status(400).json({ erro: "severidade deve ser GRAVE ou LEVE" });
+    return res.status(400).json({ erro: "severidade deve ser GRAVE, MEDIANO ou LEVE" });
   }
 
   if (

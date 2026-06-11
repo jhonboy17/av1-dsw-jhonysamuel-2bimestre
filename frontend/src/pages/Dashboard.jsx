@@ -82,7 +82,7 @@ export default function Dashboard() {
                   <li key={paciente.id} className="py-3 flex justify-between items-center">
                     <div>
                       <p className="font-semibold text-gray-900">{paciente.nome}</p>
-                      <p className="text-sm text-gray-500">{paciente.email}</p>
+                      <p className="text-sm text-gray-500">{paciente.doenca} - {paciente.severidade}</p>
                     </div>
                   </li>
                 ))}
